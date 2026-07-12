@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caviar y Trufa — El lujo, en su estado más puro</title>
+  <meta name="description" content="Caviar y trufa de origen, seleccionados a mano. Cancún, México.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-mark">
+      <span class="pl-letter">C</span><span class="pl-letter">&amp;</span><span class="pl-letter">T</span>
+    </div>
+  </div>
+
+  <!-- Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span class="cursor-label" id="cursorLabel"></span></div>
+
+  <!-- Barra de progreso -->
+  <div class="progress" id="progress"></div>
+
+  <!-- Grano de película -->
+  <div class="grain"></div>
+
+  <!-- Nav -->
+  <header class="nav">
+    <a href="#" class="nav-brand" data-magnetic>Caviar <em>y</em> Trufa</a>
+    <nav class="nav-links">
+      <a href="#coleccion" data-magnetic>Colección</a>
+      <a href="#historia" data-magnetic>Historia</a>
+      <a href="#contacto" data-magnetic>Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero" id="hero">
+      <canvas id="pearls"></canvas>
+      <div class="hero-veil"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow reveal">Cancún · Desde el origen</p>
+        <h1 class="hero-title">
+          <span class="line"><span class="line-inner">El lujo,</span></span>
+          <span class="line"><span class="line-inner">en su estado</span></span>
+          <span class="line"><span class="line-inner"><em>más puro.</em></span></span>
+        </h1>
+        <p class="hero-sub reveal">Caviar y trufa seleccionados a mano,<br>para mesas que no necesitan presumir.</p>
+        <a href="#coleccion" class="hero-cta reveal" data-magnetic data-cursor="hover">Descubrir la colección</a>
+      </div>
+      <div class="hero-scroll">
+        <span class="hero-scroll-line"></span>
+      </div>
+    </section>
+
+    <!-- ═══════════ MARQUEE ═══════════ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Beluga — Oscietra — Trufa Negra — Trufa Blanca — Malossol — </span>
+        <span>Beluga — Oscietra — Trufa Negra — Trufa Blanca — Malossol — </span>
+      </div>
+    </div>
+
+    <!-- ═══════════ COLECCIÓN ═══════════ -->
+    <section class="coleccion" id="coleccion">
+      <div class="section-head">
+        <span class="section-num reveal">01</span>
+        <h2 class="section-title">
+          <span class="line"><span class="line-inner">La <em>colección</em></span></span>
+        </h2>
+      </div>
+
+      <div class="product-list" id="productList">
+        <article class="product-row" data-img="https://images.unsplash.com/photo-1606851091851-e8d8d7f3e2c2?w=700&q=85" data-cursor-label="Ver">
+          <span class="pr-num">Nº 01</span>
+          <h3 class="pr-name">Beluga</h3>
+          <p class="pr-desc">Granos generosos, gris perla. El silencio antes del aplauso.</p>
+          <span class="pr-price">$4,800 <small>MXN / 30 g</small></span>
+        </article>
+        <article class="product-row" data-img="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=85" data-cursor-label="Ver">
+          <span class="pr-num">Nº 02</span>
+          <h3 class="pr-name">Oscietra</h3>
+          <p class="pr-desc">Ámbar profundo, notas de avellana y mar en calma.</p>
+          <span class="pr-price">$2,900 <small>MXN / 30 g</small></span>
+        </article>
+        <article class="product-row" data-img="https://images.unsplash.com/photo-1612197527762-8cfb04c0728c?w=700&q=85" data-cursor-label="Ver">
+          <span class="pr-num">Nº 03</span>
+          <h3 class="pr-name">Trufa Negra</h3>
+          <p class="pr-desc">Périgord de invierno. Perfume de bosque después de la lluvia.</p>
+          <span class="pr-price">$1,950 <small>MXN / 50 g</small></span>
+        </article>
+        <article class="product-row" data-img="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=700&q=85" data-cursor-label="Ver">
+          <span class="pr-num">Nº 04</span>
+          <h3 class="pr-name">Trufa Blanca</h3>
+          <p class="pr-desc">Alba, Piamonte. Se ralla, nunca se cocina.</p>
+          <span class="pr-price">$5,400 <small>MXN / 50 g</small></span>
+        </article>
+      </div>
+
+      <div class="float-img" id="floatImg"><img src="" alt=""></div>
+    </section>
+
+    <!-- ═══════════ HISTORIA ═══════════ -->
+    <section class="historia" id="historia">
+      <div class="section-head">
+        <span class="section-num reveal">02</span>
+        <h2 class="section-title">
+          <span class="line"><span class="line-inner">Nuestra <em>historia</em></span></span>
+        </h2>
+      </div>
+
+      <blockquote class="historia-quote">
+        <span class="line"><span class="line-inner">«Llevamos el mar y el bosque</span></span>
+        <span class="line"><span class="line-inner">a tu mesa, <em>sin decir</em></span></span>
+        <span class="line"><span class="line-inner"><em>una palabra.»</em></span></span>
+      </blockquote>
+
+      <div class="historia-body">
+        <figure class="historia-fig">
+          <img class="parallax-img" src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=1200&q=85" alt="Mesa de degustación">
+        </figure>
+        <div class="historia-text">
+          <p class="reveal">Nacimos en Cancún con una convicción simple: la excelencia no se anuncia, se reconoce. Cada lata que sale de nuestras manos fue elegida grano por grano; cada trufa, olfateada en su bosque de origen.</p>
+          <p class="reveal">Trabajamos con menos de una docena de productores en el mundo. No buscamos volumen. Buscamos ese instante en el que alguien prueba algo y se queda callado.</p>
+          <p class="reveal historia-firma">El caviar es un lujo discreto.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CONTACTO ═══════════ -->
+    <section class="contacto" id="contacto">
+      <div class="section-head">
+        <span class="section-num reveal">03</span>
+        <h2 class="section-title">
+          <span class="line"><span class="line-inner">Hablemos<em>.</em></span></span>
+        </h2>
+      </div>
+
+      <div class="contacto-grid">
+        <div class="contacto-info">
+          <p class="reveal">Pedidos, cenas privadas o simplemente<br>una recomendación honesta.</p>
+          <a class="contacto-mail reveal" href="mailto:pedidos@caviarytrufa.com" data-cursor="hover">pedidos@caviarytrufa.com</a>
+          <p class="contacto-loc reveal">Cancún, Quintana Roo · México</p>
+        </div>
+        <form class="contacto-form" id="contactForm">
+          <div class="field reveal">
+            <input type="text" id="fName" placeholder=" " required>
+            <label for="fName">Nombre</label>
+          </div>
+          <div class="field reveal">
+            <input type="email" id="fEmail" placeholder=" " required>
+            <label for="fEmail">Email</label>
+          </div>
+          <div class="field reveal">
+            <textarea id="fMsg" rows="3" placeholder=" "></textarea>
+            <label for="fMsg">Mensaje</label>
+          </div>
+          <button type="submit" class="submit reveal" data-magnetic data-cursor="hover">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
+    <p class="footer-mark" aria-hidden="true">Caviar y Trufa</p>
+    <div class="footer-row">
+      <span>© 2026 Caviar y Trufa</span>
+      <span>Cancún, México</span>
+      <a href="#hero" data-cursor="hover">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
