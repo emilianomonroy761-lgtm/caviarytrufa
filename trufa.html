@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trufa — Caviar y Trufa</title>
+  <meta name="description" content="La colección completa de trufa: de invierno, de verano, blanca y de otoño, más todos sus derivados.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span class="cursor-label" id="cursorLabel"></span></div>
+
+  <!-- Barra de progreso -->
+  <div class="progress" id="progress"></div>
+
+  <!-- Grano de película -->
+  <div class="grain"></div>
+
+  <!-- Nav -->
+  <header class="nav">
+    <a href="index.html" class="nav-brand" data-magnetic>Caviar <em>y</em> Trufa</a>
+    <nav class="nav-links">
+      <a href="caviar.html" data-magnetic>Caviar</a>
+      <a href="index.html#historia" data-magnetic>Historia</a>
+      <a href="index.html#contacto" data-magnetic>Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="page-head">
+      <a href="index.html" class="back-link reveal" data-cursor="hover">← Inicio</a>
+      <span class="page-eyebrow reveal">La colección completa</span>
+      <h1 class="page-title">
+        <span class="line"><span class="line-inner"><em>Trufa</em></span></span>
+      </h1>
+      <p class="page-intro reveal">Cuatro estaciones, cuatro trufas frescas — y todo lo que nace de ellas.</p>
+    </div>
+
+    <div class="catalog-wrap">
+      <h2 class="catalog-label reveal">Trufa fresca</h2>
+      <div class="catalog">
+        <a class="card reveal" id="invierno" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=700&q=85" alt="Trufa de invierno" loading="lazy"></div>
+          <h3 class="card-name">Trufa de Invierno</h3>
+          <p class="card-desc">Tuber melanosporum. Diciembre–marzo. La reina negra: intensa y profunda.</p>
+          <span class="card-price">$190 <small>MXN / g</small></span>
+        </a>
+        <a class="card reveal" id="verano" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=700&q=85" alt="Trufa de verano" loading="lazy"></div>
+          <h3 class="card-name">Trufa de Verano</h3>
+          <p class="card-desc">Tuber aestivum. Mayo–agosto. Sutil, con notas de avellana.</p>
+          <span class="card-price">$65 <small>MXN / g</small></span>
+        </a>
+        <a class="card reveal" id="blanca" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=700&q=85" alt="Trufa blanca" loading="lazy"></div>
+          <h3 class="card-name">Trufa Blanca</h3>
+          <p class="card-desc">Tuber magnatum. Alba, Piamonte. Se ralla, nunca se cocina.</p>
+          <span class="card-price">$480 <small>MXN / g</small></span>
+        </a>
+        <a class="card reveal" id="otono" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&q=85" alt="Trufa de otoño" loading="lazy"></div>
+          <h3 class="card-name">Trufa de Otoño</h3>
+          <p class="card-desc">Tuber uncinatum. Septiembre–diciembre. Aromática y versátil.</p>
+          <span class="card-price">$95 <small>MXN / g</small></span>
+        </a>
+      </div>
+
+      <h2 class="catalog-label reveal">Derivados</h2>
+      <div class="catalog">
+        <a class="card reveal" id="aceite" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=700&q=85" alt="Aceite de trufa blanca" loading="lazy"></div>
+          <h3 class="card-name">Aceite de trufa blanca</h3>
+          <p class="card-desc">Oliva extra virgen infusionado. Unas gotas bastan.</p>
+          <span class="card-price">$650 <small>MXN / 100 ml</small></span>
+        </a>
+        <a class="card reveal" id="mantequilla" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1481931098730-318b6f776db0?w=700&q=85" alt="Mantequilla trufada" loading="lazy"></div>
+          <h3 class="card-name">Mantequilla trufada</h3>
+          <p class="card-desc">Con láminas reales de trufa negra. Para un pan que no se olvida.</p>
+          <span class="card-price">$480 <small>MXN / 125 g</small></span>
+        </a>
+        <a class="card reveal" id="miel" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1447078806655-40579c2520d6?w=700&q=85" alt="Miel con trufa" loading="lazy"></div>
+          <h3 class="card-name">Miel con trufa</h3>
+          <p class="card-desc">Dulce y bosque en la misma cuchara. Con quesos, imbatible.</p>
+          <span class="card-price">$520 <small>MXN / 120 g</small></span>
+        </a>
+        <a class="card reveal" id="sal" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=700&q=85" alt="Sal de trufa" loading="lazy"></div>
+          <h3 class="card-name">Sal de trufa</h3>
+          <p class="card-desc">El atajo elegante: huevo, pasta o palomitas, elevados al instante.</p>
+          <span class="card-price">$390 <small>MXN / 100 g</small></span>
+        </a>
+        <a class="card reveal" id="tartufata" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=700&q=85" alt="Salsa tartufata" loading="lazy"></div>
+          <h3 class="card-name">Salsa tartufata</h3>
+          <p class="card-desc">Trufa negra y hongos. Lista para pasta, carnes o risotto.</p>
+          <span class="card-price">$560 <small>MXN / 90 g</small></span>
+        </a>
+        <a class="card reveal" id="carpaccio" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=700&q=85" alt="Carpaccio de trufa" loading="lazy"></div>
+          <h3 class="card-name">Carpaccio de trufa</h3>
+          <p class="card-desc">Láminas en aceite de oliva. Directo del frasco al plato.</p>
+          <span class="card-price">$720 <small>MXN / 90 g</small></span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
+    <p class="footer-mark" aria-hidden="true">Caviar y Trufa</p>
+    <div class="footer-row">
+      <span>© 2026 Caviar y Trufa</span>
+      <span>Cancún, México</span>
+      <a href="#" data-cursor="hover">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

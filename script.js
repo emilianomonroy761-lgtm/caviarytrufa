@@ -10,13 +10,14 @@
 
   /* ─── Preloader ─── */
   window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
     setTimeout(() => {
-      document.getElementById('preloader').classList.add('done');
-      document.querySelectorAll('.hero .line, .hero .reveal').forEach((el, i) => {
+      if (preloader) preloader.classList.add('done');
+      document.querySelectorAll('.hero .line, .hero .reveal, .page-head .line, .page-head .reveal').forEach((el, i) => {
         el.style.setProperty('--i', i);
         el.classList.add('in');
       });
-    }, reducedMotion ? 0 : 1100);
+    }, reducedMotion || !preloader ? 0 : 1100);
   });
 
   /* ─── Cursor personalizado ─── */
@@ -84,7 +85,7 @@
   }, { threshold: 0.2, rootMargin: '0px 0px -5%' });
 
   document.querySelectorAll('main .line, main .reveal, footer .reveal').forEach(el => {
-    if (el.closest('.hero')) return; // el hero lo dispara el preloader
+    if (el.closest('.hero') || el.closest('.page-head')) return; // los dispara el preloader/load
     const parent = el.parentElement;
     const siblings = [...parent.querySelectorAll(':scope > .line, :scope > .reveal')];
     el.style.setProperty('--i', Math.max(siblings.indexOf(el), 0));
@@ -226,15 +227,25 @@
     syncRunning();
   })();
 
+  /* ─── Filas de producto: clic navega ─── */
+  document.querySelectorAll('.product-row[data-href]').forEach(row => {
+    row.addEventListener('click', () => { location.href = row.dataset.href; });
+  });
+
   /* ─── Imagen flotante en la colección ─── */
-  if (finePointer && !reducedMotion) {
-    const floatImg = document.getElementById('floatImg');
+  const floatImg = document.getElementById('floatImg');
+  if (floatImg && finePointer && !reducedMotion) {
     const img = floatImg.querySelector('img');
-    const list = document.getElementById('productList');
     const pos = { x: 0, y: 0 };
     let visible = false;
 
-    document.querySelectorAll('.product-row').forEach(row => {
+    // precarga: sin esto el recuadro aparece vacío al primer hover
+    document.querySelectorAll('.product-row[data-img]').forEach(row => {
+      new Image().src = row.dataset.img;
+    });
+
+    document.querySelectorAll('.product-row[data-img]').forEach(row => {
+      const list = row.closest('.product-list');
       row.addEventListener('mouseenter', () => {
         img.src = row.dataset.img;
         list.classList.add('is-hovering');
@@ -243,8 +254,14 @@
         if (!visible) { pos.x = mouse.x; pos.y = mouse.y; visible = true; }
       });
       row.addEventListener('mouseleave', () => {
-        list.classList.remove('is-hovering');
         row.classList.remove('is-active');
+      });
+    });
+
+    // se oculta al salir de la lista completa, no entre fila y fila
+    document.querySelectorAll('.product-list').forEach(list => {
+      list.addEventListener('mouseleave', () => {
+        list.classList.remove('is-hovering');
         floatImg.classList.remove('is-visible');
         visible = false;
       });
@@ -283,25 +300,30 @@
 
   /* ─── Barra de progreso ─── */
   const progress = document.getElementById('progress');
-  let progTick = false;
-  addEventListener('scroll', () => {
-    if (progTick) return;
-    progTick = true;
-    requestAnimationFrame(() => {
-      const max = document.documentElement.scrollHeight - innerHeight;
-      progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
-      progTick = false;
-    });
-  }, { passive: true });
+  if (progress) {
+    let progTick = false;
+    addEventListener('scroll', () => {
+      if (progTick) return;
+      progTick = true;
+      requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+        progTick = false;
+      });
+    }, { passive: true });
+  }
 
   /* ─── Contacto (mailto — sin backend) ─── */
-  document.getElementById('contactForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('fName').value;
-    const email = document.getElementById('fEmail').value;
-    const msg = document.getElementById('fMsg').value;
-    const body = encodeURIComponent(`${msg}\n\n— ${name}\n${email}`);
-    location.href = `mailto:pedidos@caviarytrufa.com?subject=${encodeURIComponent('Contacto — ' + name)}&body=${body}`;
-  });
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('fName').value;
+      const email = document.getElementById('fEmail').value;
+      const msg = document.getElementById('fMsg').value;
+      const body = encodeURIComponent(`${msg}\n\n— ${name}\n${email}`);
+      location.href = `mailto:pedidos@caviarytrufa.com?subject=${encodeURIComponent('Contacto — ' + name)}&body=${body}`;
+    });
+  }
 
 })();

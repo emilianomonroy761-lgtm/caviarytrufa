@@ -246,6 +246,25 @@ section { padding: 140px 48px; position: relative; }
 
 /* ─── Colección ─── */
 .coleccion { background: var(--noir); }
+.collection-group { max-width: 1200px; margin: 0 auto 90px; }
+.collection-group:last-of-type { margin-bottom: 0; }
+.group-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 28px;
+}
+.group-title {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(24px, 3vw, 34px); color: var(--champagne);
+}
+.group-link {
+  font-size: 11px; font-weight: 400; letter-spacing: 0.22em;
+  text-transform: uppercase; text-decoration: none;
+  color: var(--ivory-dim);
+  border-bottom: 1px solid rgba(242, 237, 227, 0.2);
+  padding-bottom: 3px;
+  transition: color 0.35s, border-color 0.35s;
+}
+.group-link:hover { color: var(--champagne); border-color: var(--champagne); }
 .product-list { max-width: 1200px; margin: 0 auto; }
 .product-row {
   display: grid;
@@ -255,6 +274,7 @@ section { padding: 140px 48px; position: relative; }
   border-bottom: 1px solid rgba(242, 237, 227, 0.08);
   transition: opacity 0.5s var(--ease), padding-left 0.5s var(--ease);
   position: relative;
+  cursor: pointer;
 }
 .product-row:first-child { border-top: 1px solid rgba(242, 237, 227, 0.08); }
 .product-list.is-hovering .product-row:not(.is-active) { opacity: 0.25; }
@@ -368,6 +388,65 @@ section { padding: 140px 48px; position: relative; }
 }
 .submit:hover { background: var(--champagne); color: var(--noir); border-color: var(--champagne); }
 
+/* ─── Páginas de catálogo (caviar.html / trufa.html) ─── */
+.page-head {
+  padding: 190px 48px 70px;
+  max-width: 1200px; margin: 0 auto;
+}
+.page-eyebrow {
+  font-size: 11px; letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--champagne); margin-bottom: 24px; display: block;
+}
+.page-title {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(48px, 8vw, 110px); line-height: 1;
+  margin-bottom: 28px;
+}
+.page-title em { color: var(--champagne); }
+.page-intro {
+  font-size: 15px; line-height: 1.8; color: var(--ivory-dim);
+  max-width: 460px;
+}
+.catalog-wrap { padding: 0 48px 120px; }
+.catalog {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+  max-width: 1200px; margin: 0 auto;
+  padding: 20px 0 40px;
+}
+.catalog-label {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(24px, 3vw, 34px); color: var(--champagne);
+  max-width: 1200px; margin: 0 auto 12px;
+}
+.card { text-decoration: none; color: var(--ivory); display: block; }
+.card-img {
+  overflow: hidden; aspect-ratio: 4 / 5; border-radius: 2px;
+  margin-bottom: 20px;
+}
+.card-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transform: scale(1.01);
+  transition: transform 0.9s var(--ease);
+}
+.card:hover .card-img img { transform: scale(1.07); }
+.card-name {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 26px; margin-bottom: 8px;
+  transition: color 0.35s;
+}
+.card:hover .card-name { color: var(--champagne); }
+.card-desc { font-size: 13px; line-height: 1.7; color: var(--ivory-dim); margin-bottom: 12px; }
+.card-price { font-size: 13px; letter-spacing: 0.08em; }
+.card-price small { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
+.back-link {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ivory-dim); text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.35s;
+}
+.back-link:hover { color: var(--champagne); }
+
 /* ─── Footer ─── */
 .footer {
   padding: 100px 48px 40px; overflow: hidden;
@@ -413,6 +492,15 @@ section { padding: 140px 48px; position: relative; }
   .historia-body { grid-template-columns: 1fr; gap: 48px; }
   .contacto-grid { grid-template-columns: 1fr; gap: 56px; }
   .footer { padding: 60px 24px 32px; }
+  .group-head { flex-direction: column; gap: 12px; align-items: flex-start; }
+  .collection-group { margin-bottom: 64px; }
+  .page-head { padding: 140px 24px 50px; }
+  .catalog-wrap { padding: 0 24px 80px; }
+  .catalog { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+}
+
+@media (max-width: 540px) {
+  .catalog { grid-template-columns: 1fr; }
 }
 
 /* ─── Movimiento reducido ─── */

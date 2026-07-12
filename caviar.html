@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caviar — Caviar y Trufa</title>
+  <meta name="description" content="La colección completa de caviar: Baeri, Imperial Oscietra, Beluga DAU y Kaluga.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span class="cursor-label" id="cursorLabel"></span></div>
+
+  <!-- Barra de progreso -->
+  <div class="progress" id="progress"></div>
+
+  <!-- Grano de película -->
+  <div class="grain"></div>
+
+  <!-- Nav -->
+  <header class="nav">
+    <a href="index.html" class="nav-brand" data-magnetic>Caviar <em>y</em> Trufa</a>
+    <nav class="nav-links">
+      <a href="trufa.html" data-magnetic>Trufa</a>
+      <a href="index.html#historia" data-magnetic>Historia</a>
+      <a href="index.html#contacto" data-magnetic>Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="page-head">
+      <a href="index.html" class="back-link reveal" data-cursor="hover">← Inicio</a>
+      <span class="page-eyebrow reveal">La colección completa</span>
+      <h1 class="page-title">
+        <span class="line"><span class="line-inner"><em>Caviar</em></span></span>
+      </h1>
+      <p class="page-intro reveal">Cuatro orígenes, un mismo criterio: solo lo que nosotros serviríamos en nuestra propia mesa.</p>
+    </div>
+
+    <div class="catalog-wrap">
+      <h2 class="catalog-label reveal">Latas</h2>
+      <div class="catalog">
+        <a class="card reveal" id="baeri" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=85" alt="Caviar Baeri" loading="lazy"></div>
+          <h3 class="card-name">Baeri</h3>
+          <p class="card-desc">Acipenser baerii. Granos finos, entrada limpia y elegante. Ideal para iniciarse.</p>
+          <span class="card-price">$2,200 <small>MXN / 30 g</small></span>
+        </a>
+        <a class="card reveal" id="imperial-oscietra" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=700&q=85" alt="Caviar Imperial Oscietra" loading="lazy"></div>
+          <h3 class="card-name">Imperial Oscietra</h3>
+          <p class="card-desc">Dorado profundo, notas de avellana y mantequilla. El equilibrio perfecto.</p>
+          <span class="card-price">$3,400 <small>MXN / 30 g</small></span>
+        </a>
+        <a class="card reveal" id="beluga-dau" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=700&q=85" alt="Caviar Beluga DAU" loading="lazy"></div>
+          <h3 class="card-name">Beluga DAU</h3>
+          <p class="card-desc">El más codiciado del mundo. Granos generosos, gris perla, final interminable.</p>
+          <span class="card-price">$6,800 <small>MXN / 30 g</small></span>
+        </a>
+        <a class="card reveal" id="kaluga" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=700&q=85" alt="Caviar Kaluga" loading="lazy"></div>
+          <h3 class="card-name">Caviar Kaluga</h3>
+          <p class="card-desc">Cremoso, de final largo. El favorito de los chefs contemporáneos.</p>
+          <span class="card-price">$4,200 <small>MXN / 30 g</small></span>
+        </a>
+      </div>
+
+      <h2 class="catalog-label reveal">Para servirlo</h2>
+      <div class="catalog">
+        <a class="card reveal" id="cuchara-nacar" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=700&q=85" alt="Cuchara de nácar" loading="lazy"></div>
+          <h3 class="card-name">Cuchara de nácar</h3>
+          <p class="card-desc">El metal altera el sabor del caviar. El nácar, jamás.</p>
+          <span class="card-price">$850 <small>MXN</small></span>
+        </a>
+        <a class="card reveal" id="blinis" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&q=85" alt="Blinis artesanales" loading="lazy"></div>
+          <h3 class="card-name">Blinis artesanales</h3>
+          <p class="card-desc">Horneados el mismo día. La base clásica, hecha como debe ser.</p>
+          <span class="card-price">$180 <small>MXN / 12 pzas</small></span>
+        </a>
+        <a class="card reveal" id="set-degustacion" href="index.html#contacto" data-cursor="hover">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?w=700&q=85" alt="Set de degustación" loading="lazy"></div>
+          <h3 class="card-name">Set de degustación</h3>
+          <p class="card-desc">Tres orígenes en formato de 10 g. Para decidir con el paladar.</p>
+          <span class="card-price">$1,950 <small>MXN</small></span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
+    <p class="footer-mark" aria-hidden="true">Caviar y Trufa</p>
+    <div class="footer-row">
+      <span>© 2026 Caviar y Trufa</span>
+      <span>Cancún, México</span>
+      <a href="#" data-cursor="hover">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
