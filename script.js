@@ -152,14 +152,37 @@
     }
 
     const pointer = { x: -9999, y: -9999 };
-    canvas.parentElement.addEventListener('mousemove', e => {
+    const hero = canvas.parentElement;
+    hero.addEventListener('mousemove', e => {
       const r = canvas.getBoundingClientRect();
       pointer.x = e.clientX - r.left;
       pointer.y = e.clientY - r.top;
     }, { passive: true });
-    canvas.parentElement.addEventListener('mouseleave', () => {
+    hero.addEventListener('mouseleave', () => {
       pointer.x = pointer.y = -9999;
     });
+
+    // En touch: el dedo aparta las perlas igual que el cursor
+    function touchPoint(e) {
+      const t = e.touches[0];
+      if (!t) return;
+      const r = canvas.getBoundingClientRect();
+      pointer.x = t.clientX - r.left;
+      pointer.y = t.clientY - r.top;
+    }
+    hero.addEventListener('touchstart', touchPoint, { passive: true });
+    hero.addEventListener('touchmove', touchPoint, { passive: true });
+    hero.addEventListener('touchend', () => { pointer.x = pointer.y = -9999; });
+
+    // El scroll agita el campo suavemente (clave en móvil)
+    let lastScroll = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const d = window.scrollY - lastScroll;
+      lastScroll = window.scrollY;
+      if (!running) return;
+      const kick = Math.max(-2.5, Math.min(2.5, d * 0.05));
+      for (const p of pearls) p.vy -= kick * (0.4 + Math.random() * 0.6);
+    }, { passive: true });
 
     const REPEL = 130, FORCE = 6.5;
 

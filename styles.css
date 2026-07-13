@@ -279,6 +279,7 @@ section { padding: 140px 48px; position: relative; }
 .product-row:first-child { border-top: 1px solid rgba(242, 237, 227, 0.08); }
 .product-list.is-hovering .product-row:not(.is-active) { opacity: 0.25; }
 .product-row.is-active { padding-left: 28px; }
+.pr-thumb { display: none; }
 .pr-num { font-size: 11px; letter-spacing: 0.2em; color: var(--muted); }
 .pr-name {
   font-family: var(--serif); font-weight: 300; font-style: italic;
@@ -479,14 +480,20 @@ section { padding: 140px 48px; position: relative; }
   section { padding: 90px 24px; }
   .hero-content { padding: 0 24px; }
   .product-row {
-    grid-template-columns: 1fr auto;
-    grid-template-areas: "num num" "name price" "desc desc";
-    gap: 10px 16px; padding: 32px 4px;
+    grid-template-columns: 96px 1fr;
+    grid-template-areas: "num num" "img name" "img price" "desc desc";
+    gap: 8px 18px; padding: 32px 4px;
+    align-items: start;
+  }
+  .pr-thumb { grid-area: img; display: block; }
+  .pr-thumb img {
+    width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
+    display: block; border-radius: 2px;
   }
   .pr-num { grid-area: num; }
   .pr-name { grid-area: name; }
-  .pr-desc { grid-area: desc; }
-  .pr-price { grid-area: price; align-self: center; }
+  .pr-desc { grid-area: desc; margin-top: 6px; }
+  .pr-price { grid-area: price; align-self: end; }
   .product-row.is-active { padding-left: 4px; }
   .float-img { display: none; }
   .historia-body { grid-template-columns: 1fr; gap: 48px; }
@@ -501,6 +508,11 @@ section { padding: 140px 48px; position: relative; }
 
 @media (max-width: 540px) {
   .catalog { grid-template-columns: 1fr; }
+  .nav {
+    flex-direction: column; align-items: center; gap: 10px;
+    padding: 14px 16px;
+  }
+  .nav-links { gap: 22px; }
 }
 
 /* ─── Movimiento reducido ─── */
