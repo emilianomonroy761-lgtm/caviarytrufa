@@ -97,7 +97,9 @@
     const canvas = document.getElementById('pearls');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    const dpr = Math.min(devicePixelRatio || 1, 2);
+    const coarse = matchMedia('(pointer: coarse)').matches;
+    // en móvil: menos resolución de canvas = mucho menos trabajo por frame
+    const dpr = Math.min(devicePixelRatio || 1, coarse ? 1.5 : 2);
     let W = 0, H = 0, pearls = [], running = false, t = 0;
 
     // Sprite pre-renderizado: mucho más rápido que gradientes por frame
@@ -135,7 +137,7 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       pearls = [];
-      const gap = W > 860 ? 42 : 52;
+      const gap = W > 860 ? 42 : 64; // móvil: menos perlas
       for (let gx = gap / 2; gx < W; gx += gap) {
         for (let gy = gap / 2; gy < H; gy += gap) {
           const x = gx + (Math.random() - 0.5) * gap * 0.9;
@@ -218,11 +220,18 @@
       }
     }
 
-    function frame() {
+    // si el dispositivo no sostiene 60fps, baja a 30fps estables (sin tirones)
+    let slowFrames = 0, halfRate = false, flip = false, lastTs = 0;
+    function frame(now) {
       if (!running) return;
+      requestAnimationFrame(frame);
+      if (halfRate) { flip = !flip; if (flip) return; }
+      if (lastTs && !halfRate && now - lastTs > 34) {
+        if (++slowFrames > 12) halfRate = true;
+      }
+      lastTs = now;
       t += 0.016;
       draw();
-      requestAnimationFrame(frame);
     }
 
     let heroVisible = true;
