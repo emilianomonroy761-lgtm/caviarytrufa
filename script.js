@@ -147,7 +147,8 @@
             r: 2.5 + Math.random() * 4,
             gold: Math.random() < 0.07,
             phase: Math.random() * Math.PI * 2,
-            speed: 0.4 + Math.random() * 0.6
+            speed: 0.4 + Math.random() * 0.6,
+            jit: 0.5 + Math.random() * 0.6
           });
         }
       }
@@ -176,19 +177,23 @@
     hero.addEventListener('touchmove', touchPoint, { passive: true });
     hero.addEventListener('touchend', () => { pointer.x = pointer.y = -9999; });
 
-    // El scroll agita el campo suavemente (clave en móvil)
-    let lastScroll = window.scrollY;
+    // El scroll agita el campo: aquí solo se acumula, el impulso se aplica en draw()
+    let scrollKick = 0, lastScroll = window.scrollY;
     window.addEventListener('scroll', () => {
       const d = window.scrollY - lastScroll;
       lastScroll = window.scrollY;
       if (!running) return;
-      const kick = Math.max(-2.5, Math.min(2.5, d * 0.05));
-      for (const p of pearls) p.vy -= kick * (0.4 + Math.random() * 0.6);
+      scrollKick = Math.max(-3, Math.min(3, scrollKick + d * 0.05));
     }, { passive: true });
 
     const REPEL = 130, FORCE = 6.5;
 
     function draw() {
+      // el empujón se reparte en varios frames en vez de un golpe seco por evento
+      const kick = scrollKick;
+      scrollKick *= 0.6;
+      if (Math.abs(scrollKick) < 0.01) scrollKick = 0;
+
       ctx.clearRect(0, 0, W, H);
 
       for (const p of pearls) {
@@ -206,6 +211,9 @@
           p.vy += (dy / d) * f;
         }
 
+        // empujón del scroll
+        if (kick) p.vy -= kick * p.jit;
+
         // resorte a casa + amortiguación
         p.vx += (homeX - p.x) * 0.02;
         p.vy += (homeY - p.y) * 0.02;
@@ -221,16 +229,19 @@
     }
 
     // si el dispositivo no sostiene 60fps, baja a 30fps estables (sin tirones)
-    let slowFrames = 0, halfRate = false, flip = false, lastTs = 0;
+    let slowFrames = 0, halfRate = false, flip = false, lastTs = 0, rafId = 0;
     function frame(now) {
       if (!running) return;
-      requestAnimationFrame(frame);
+      rafId = requestAnimationFrame(frame);
       if (halfRate) { flip = !flip; if (flip) return; }
-      if (lastTs && !halfRate && now - lastTs > 34) {
-        if (++slowFrames > 12) halfRate = true;
-      }
+      const dt = lastTs ? now - lastTs : 16;
       lastTs = now;
-      t += 0.016;
+      if (!halfRate) {
+        // solo cuentan los frames lentos SEGUIDOS; uno rápido borra la cuenta
+        if (dt > 34) { if (++slowFrames > 12) halfRate = true; }
+        else slowFrames = 0;
+      }
+      t += Math.min(dt, 50) / 1000; // la deriva va al mismo ritmo aunque caiga a 30fps
       draw();
     }
 
@@ -238,7 +249,11 @@
     function syncRunning() {
       const wasRunning = running;
       running = heroVisible && !document.hidden && !reducedMotion;
-      if (running && !wasRunning) requestAnimationFrame(frame);
+      if (running && !wasRunning) {
+        lastTs = 0; // el tiempo detenido no debe contar como frame lento
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(frame);
+      }
     }
 
     const heroIO = new IntersectionObserver(([entry]) => {
@@ -248,10 +263,16 @@
     heroIO.observe(canvas.parentElement);
     document.addEventListener('visibilitychange', syncRunning);
 
+    // Ojo: en móvil, esconder la barra de URL al hacer scroll dispara 'resize' sin que
+    // cambie el alto real del hero. Reconstruir ahí resembraba todo el campo de golpe.
     let resizeTimer;
     addEventListener('resize', () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => { build(); draw(); }, 200);
+      resizeTimer = setTimeout(() => {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        if (Math.abs(rect.width - W) < 1 && Math.abs(rect.height - H) < 140) return;
+        build(); draw();
+      }, 200);
     });
 
     build();
